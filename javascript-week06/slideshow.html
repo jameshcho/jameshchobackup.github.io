@@ -1,20 +1,44 @@
 
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Slideshow</title>
+        <title>Bomarzo's Park of the Monsters</title>
     </head>
     <body>
+	<p>A photo assignment for Digital Photography 1 during the 2009 Winterintersession in Bomarzo, Italy.</p>
         <img id="image" src="images/1.jpg" alt="">
         <script src="jquery-1.11.0.js"></script>
         <script>
 
 		var num = 1;
+		var max = 12;
 		$('#image').click(function() {
     		num++;
+		if (num > max) {
+        	num = 1;
+    		}
     		var image = 'images/' + num + '.jpg';
     		this.src = image;
+		});
+
+	var position = 1;
+        var maxPosition = 12;
+        
+        function nextImage() {
+            position++;
+            if (position > maxPosition) {
+                position = 1;
+            }
+            $('#image').fadeOut(250, function() {
+                $('#image').attr('src', 'images/' + position + '.jpg');
+                $('#image').fadeIn(250);
+            });
+        }
+        
+        $('#image').click(nextImage);
+
 
 	</script>
     </body>
