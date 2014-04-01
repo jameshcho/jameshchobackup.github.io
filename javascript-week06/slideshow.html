@@ -1,10 +1,20 @@
 
 
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <title>Bomarzo's Park of the Monsters</title>
+	<link href='http://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet' type='text/css'>
+	<style>
+	body {
+		margin: 0;
+		font-family: 'Cinzel', serif;
+		font-weight: 150;
+		font-size:25px;
+	}
+	</style>
     </head>
     <body>
 	<p>A photo assignment for Digital Photography 1 during the 2009 Winterintersession in Bomarzo, Italy.</p>
@@ -12,16 +22,74 @@
         <script src="jquery-1.11.0.js"></script>
         <script>
 
+		var images = [
+    			{
+        			src: 'images/1.jpg',
+        			width: 960,
+        			height: 640
+    			}, {
+        			src: 'images/2.jpg',
+        			width: 960,
+        			height: 640
+    			}, {
+        			src: 'images/3.jpg',
+        			width: 960,
+        			height: 640
+    			}, {
+        			src: 'images/4.jpg',
+        			width: 960,
+        			height: 640
+    			}, {
+        			src: 'images/5.jpg',
+        			width: 960,
+        			height: 640
+    			}, {
+        			src: 'images/6.jpg',
+        			width: 960,
+        			height: 640
+    			}, {
+        			src: 'images/7.jpg',
+        			width: 960,
+        			height: 640
+			}, {
+        			src: 'images/8.jpg',
+        			width: 960,
+        			height: 640
+    			}, {
+        			src: 'images/9.jpg',
+        			width: 960,
+        			height: 640
+    			}, {
+        			src: 'images/10.jpg',
+        			width: 960,
+        			height: 640
+    			}, {
+        			src: 'images/11.jpg',
+        			width: 960,
+        			height: 640
+    			}, {
+        			src: 'images/12.jpg',
+        			width: 960,
+        			height: 640
+    			}
+		];
+
+
 		var num = 1;
-		var max = 12;
+		var max = images.length - 1;
+		resizeImage();
 		$('#image').click(function() {
     		num++;
 		if (num > max) {
-        	num = 1;
+        	num = 0;
+
     		}
-    		var image = 'images/' + num + '.jpg';
-    		this.src = image;
+    		var image = images[num];
+    		this.src = image.src;
+		resizeImage();
 		});
+
+		$(window).resize(resizeImage);
 
 	var position = 1;
         var maxPosition = 12;
@@ -38,6 +106,15 @@
         }
         
         $('#image').click(nextImage);
+
+function resizeImage() {
+    var image = images[num];
+    var ratio = image.width / image.height;
+    var width = $(window).width();
+    var height = width / ratio;
+    $('#image').css('width', width);
+    $('#image').css('height', height);
+}
 
 
 	</script>
